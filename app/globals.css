@@ -1,0 +1,54 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --deep-gray: #1C1C1C;
+  --black: #000000;
+  --blue-accent: #005f99;
+  --green-accent: #28A745;
+  --white: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--deep-gray);
+  color: var(--white);
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: var(--blue-accent);
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--blue-accent);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: var(--green-accent);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
