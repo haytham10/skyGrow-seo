@@ -1,17 +1,20 @@
 import Link from 'next/link';
 
-const packages = [
+export const packages = [
   {
+	id: 'basic-seo-pack',
     name: 'Basic SEO Pack',
     price: '$1,000/month',
     features: ['On-page SEO', '5 High-quality Backlinks', 'Monthly Reporting'],
   },
   {
+	id: 'advanced-seo-pack',
     name: 'Advanced SEO Pack',
     price: '$2,000/month',
     features: ['On-page & Off-page SEO', '10 High-quality Backlinks', 'Bi-weekly Reporting'],
   },
   {
+	id: 'premium-seo-pack',
     name: 'Premium SEO Pack',
     price: '$4,000/month',
     features: ['Full SEO Service', '20 High-quality Backlinks', 'Content Creation', 'Weekly Reporting'],
@@ -36,9 +39,11 @@ export default function ServicePackages() {
                   </li>
                 ))}
               </ul>
-              <Link href="#contact" className="bg-highlight text-white px-4 py-2 rounded-full font-semibold hover:bg-green-600 transition duration-300 text-center">
-                  Proceed to Checkout
-              </Link>
+			  <Link href={`/packages/${pkg.id}`}>
+				<button className="bg-highlight text-primary px-4 py-2 rounded-full font-semibold hover:bg-green-600 transition duration-300">
+					Request a Consultation
+				</button>
+			</Link>
             </div>
           ))}
         </div>

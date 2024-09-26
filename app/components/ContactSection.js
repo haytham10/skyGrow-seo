@@ -1,4 +1,4 @@
-import ContactForm from './ContactForm';
+import ConsultationForm from './ConsultationForm';
 
 export default function ContactSection() {
   return (
@@ -6,7 +6,7 @@ export default function ContactSection() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Get in Touch</h2>
         <div className="max-w-xl mx-auto">
-          <ContactForm />
+          <ConsultationForm />
           <div className="mt-8 text-center">
             <p className="mb-2">Or reach us at:</p>
             <p>Email: <a href="mailto:info@skygrowseo.com" className="text-highlight">info@skygrowseo.com</a></p>
