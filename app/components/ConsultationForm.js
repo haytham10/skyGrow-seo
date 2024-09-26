@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function ConsultationForm({ packageName }) {
+export default function ConsultationForm({ packageName, packagePrice }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     website: '',
     notes: '',
-    packageName,
+    selectedPack: packageName + " - " + packagePrice,
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -22,6 +22,7 @@ export default function ConsultationForm({ packageName }) {
     e.preventDefault();
     // Send form data to API
     try {
+      console.log('Submitting form data:', formData); // Add this line for debugging
       await axios.post('/api/consultation', formData);
       setSubmitted(true);
     } catch (error) {
@@ -40,59 +41,70 @@ export default function ConsultationForm({ packageName }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block mb-1">Name</label>
+        <label className="block mb-1 text-sm">Name</label>
         <input
           type="text"
           name="name"
           required
-          className="w-full px-4 py-2 rounded bg-gray-800 text-white"
+          className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
+          placeholder="Your Name"
           value={formData.name}
           onChange={handleChange}
         />
       </div>
       <div>
-        <label className="block mb-1">Email</label>
+        <label className="block mb-1 text-sm">Email</label>
         <input
           type="email"
           name="email"
           required
-          className="w-full px-4 py-2 rounded bg-gray-800 text-white"
+          className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
+          placeholder="you@example.com"
           value={formData.email}
           onChange={handleChange}
         />
       </div>
       <div>
-        <label className="block mb-1">Company Name</label>
+        <label className="block mb-1 text-sm">Company Name</label>
         <input
           type="text"
           name="company"
           required
-          className="w-full px-4 py-2 rounded bg-gray-800 text-white"
+          className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
+          placeholder="Your Company"
           value={formData.company}
           onChange={handleChange}
         />
       </div>
       <div>
-        <label className="block mb-1">Website URL</label>
+        <label className="block mb-1 text-sm">Website URL</label>
         <input
           type="url"
           name="website"
           required
-          className="w-full px-4 py-2 rounded bg-gray-800 text-white"
+          className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
+          placeholder="https://yourwebsite.com"
           value={formData.website}
           onChange={handleChange}
         />
       </div>
       <div>
-        <label className="block mb-1">Additional Notes (optional)</label>
+        <label className="block mb-1 text-sm">Additional Notes (optional)</label>
         <textarea
           name="notes"
-          className="w-full px-4 py-2 rounded bg-gray-800 text-white"
+          className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
           rows="5"
+          placeholder="Tell us more about your project..."
           value={formData.notes}
           onChange={handleChange}
         ></textarea>
       </div>
+      {/* Add a hidden input for the package name */}
+      <input
+        type="hidden"
+        name="selectedPack"
+        value={formData.selectedPack}
+      />
       <button
         type="submit"
         className="w-full bg-highlight text-white px-4 py-2 rounded font-semibold hover:bg-green-600 transition duration-300"

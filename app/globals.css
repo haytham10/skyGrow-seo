@@ -43,6 +43,16 @@ button:hover {
   background-color: var(--green-accent);
 }
 
+input, textarea {
+  background-color: #2d2d2d;
+  border: none;
+  color: white;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #888;
+}
+
 .container {
   width: 90%;
   max-width: 1200px;

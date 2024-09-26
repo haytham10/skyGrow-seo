@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useParams } from 'next/navigation';
 import ConsultationForm from '../../components/ConsultationForm';
@@ -36,7 +36,7 @@ export default function PackageConsultation() {
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold mb-4">{selectedPackage.name}</h1>
         <p className="text-xl mb-8">Price: {selectedPackage.price}</p>
-        <ConsultationForm packageName={selectedPackage.name} />
+        <ConsultationForm packageName={selectedPackage.name} packagePrice={selectedPackage.price} />
       </div>
     </div>
   );
