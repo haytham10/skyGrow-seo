@@ -1,44 +1,69 @@
-'use client';
+"use client"
 
-import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/#services", label: "Services" },
+    { href: "/#about", label: "About" },
+    { href: "/blog", label: "Blog" },
+    { href: "/#contact", label: "Contact" }
+  ];
 
   return (
-    <header className="bg-primary fixed w-full z-10">
-      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/">
-          <span className="text-xl font-bold cursor-pointer">SkyGrow</span>
+    <header className="bg-navy-800 text-white py-6 px-6 md:px-12 shadow-md">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/header-logo.png"
+            alt="SkyGrow Logo"
+            width={180}
+            height={50}
+            className="h-auto"
+          />
         </Link>
-        <div className="hidden md:flex space-x-6">
-          <Link href="/"><span className="hover:text-highlight cursor-pointer">Home</span></Link>
-          <Link href="/#services"><span className="hover:text-highlight cursor-pointer">Services</span></Link>
-          <Link href="/about"><span className="hover:text-highlight cursor-pointer">About</span></Link>
-          <Link href="/contact"><span className="hover:text-highlight cursor-pointer">Contact</span></Link>
-          <Link href="/blog"><span className="hover:text-highlight cursor-pointer">Blog</span></Link>
+
+        <nav className="hidden md:flex space-x-8">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.label}
+              href={link.href} 
+              className="text-white hover:text-opacity-80 text-inherit font-medium transition duration-300 border-b-2 border-transparent hover:border-white py-2"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-3xl focus:outline-none hover:text-opacity-80 transition duration-300">
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
-        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor">
-            {menuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16" />
-            )}
-          </svg>
-        </button>
-      </nav>
-      {menuOpen && (
-        <div className="md:hidden bg-primary">
-          <nav className="flex flex-col items-center space-y-4 py-4">
-            <Link href="/"><span onClick={() => setMenuOpen(false)} className="hover:text-highlight cursor-pointer">Home</span></Link>
-            <Link href="/#services"><span onClick={() => setMenuOpen(false)} className="hover:text-highlight cursor-pointer">Services</span></Link>
-            <Link href="/about"><span onClick={() => setMenuOpen(false)} className="hover:text-highlight cursor-pointer">About</span></Link>
-            <Link href="/contact"><span onClick={() => setMenuOpen(false)} className="hover:text-highlight cursor-pointer">Contact</span></Link>
-            <Link href="/blog"><span onClick={() => setMenuOpen(false)} className="hover:text-highlight cursor-pointer">Blog</span></Link>
-          </nav>
-        </div>
+      </div>
+
+      {isMenuOpen && (
+        <nav className="md:hidden mt-6 space-y-3 pb-6">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.label}
+              href={link.href} 
+              className="block px-4 py-3 text-lg text-white hover:text-opacity-80 hover:bg-navy-800 transition duration-300"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       )}
     </header>
   );

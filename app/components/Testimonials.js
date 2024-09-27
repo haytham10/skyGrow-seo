@@ -1,6 +1,5 @@
 "use client"
 
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,28 +24,30 @@ export default function Testimonials() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrent((current + 1) % testimonials.length);
-    }, 5000); // Change testimonial every 5 seconds
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [current]);
 
   return (
-    <section className="py-20 bg-primary text-white text-center">
-      <h2 className="text-3xl font-bold mb-12">What Our Clients Say</h2>
-      <div className="container mx-auto px-4">
-        <AnimatePresence>
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl mx-auto"
-          >
-            <p className="text-xl italic mb-4">"{testimonials[current].quote}"</p>
-            <p className="font-semibold">- {testimonials[current].author}</p>
-          </motion.div>
-        </AnimatePresence>
+    <section className="bg-navy-800 py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-extrabold text-center text-white mb-12">What Our Clients Say</h2>
+        <div className="relative h-64">
+          <AnimatePresence>
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 flex flex-col items-center justify-center text-center"
+            >
+              <p className="text-xl italic text-gray-300 mb-4">"{testimonials[current].quote}"</p>
+              <p className="text-lg font-semibold text-white">- {testimonials[current].author}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
