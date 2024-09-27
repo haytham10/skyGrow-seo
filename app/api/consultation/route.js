@@ -21,7 +21,7 @@ export async function POST(req) {
 
     const mailOptions = {
       from: process.env.ZOHO_USER,
-      to: 'haytham.mkt@gmail.com',
+      to: 'info@skygrow.live', // Updated recipient email
       subject: 'New Consultation Request',
       text: `
         Name: ${name}

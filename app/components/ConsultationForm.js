@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function ConsultationForm({ packageName, packagePrice }) {
@@ -10,9 +10,17 @@ export default function ConsultationForm({ packageName, packagePrice }) {
     company: '',
     website: '',
     notes: '',
-    selectedPack: packageName + " - " + packagePrice,
+    selectedPack: '',
   });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Update selectedPack when packageName or packagePrice changes
+    setFormData(prevData => ({
+      ...prevData,
+      selectedPack: packageName && packagePrice ? `${packageName} - ${packagePrice}` : 'Not specified'
+    }));
+  }, [packageName, packagePrice]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -99,12 +107,17 @@ export default function ConsultationForm({ packageName, packagePrice }) {
           onChange={handleChange}
         ></textarea>
       </div>
-      {/* Add a hidden input for the package name */}
-      <input
-        type="hidden"
-        name="selectedPack"
-        value={formData.selectedPack}
-      />
+      {/* Add a visible field for the selected package */}
+      <div>
+        <label className="block mb-1 text-sm">Selected Package</label>
+        <input
+          type="text"
+          name="selectedPack"
+          readOnly
+          className="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
+          value={formData.selectedPack}
+        />
+      </div>
       <button
         type="submit"
         className="w-full bg-highlight text-white px-4 py-2 rounded font-semibold hover:bg-green-600 transition duration-300"
