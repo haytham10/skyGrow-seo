@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import dns from 'dns';
 
 export async function POST(req) {
   try {
@@ -9,44 +8,41 @@ export async function POST(req) {
 
     console.log('Received form data:', { name, email, company, website, notes, selectedPack });
 
+    // Set up Zoho Mail transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.zoho.com',
+      port: 465, // Or use 587 for TLS
+      secure: true, // true for 465, false for 587
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
+        user: process.env.ZOHO_USER, // Your Zoho Mail email
+        pass: process.env.ZOHO_PASS, // Your Zoho Mail password or App-specific password
       },
     });
 
     const mailOptions = {
-      from: process.env.GMAIL_USER,
+      from: process.env.ZOHO_USER,
       to: 'haytham.mkt@gmail.com',
       subject: 'New Consultation Request',
-      text: 
-	  	`
-			Name: ${name}
-			Email: ${email}
-			Company: ${company}
-			Website: ${website}
-			Selected Pack: ${selectedPack || 'Not specified'}
-			Notes: ${notes}
-				`,
-				html: `
-			<h2>New Consultation Request</h2>
-			<p><strong>Name:</strong> ${name}</p>
-			<p><strong>Email:</strong> ${email}</p>
-			<p><strong>Company:</strong> ${company}</p>
-			<p><strong>Website:</strong> ${website}</p>
-			<p><strong>Selected Pack:</strong> ${selectedPack || 'Not specified'}</p>
-			<p><strong>Notes:</strong> ${notes}</p>
-		`
+      text: `
+        Name: ${name}
+        Email: ${email}
+        Company: ${company}
+        Website: ${website}
+        Selected Pack: ${selectedPack || 'Not specified'}
+        Notes: ${notes}
+      `,
+      html: `
+        <h2>New Consultation Request</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Company:</strong> ${company}</p>
+        <p><strong>Website:</strong> ${website}</p>
+        <p><strong>Selected Pack:</strong> ${selectedPack || 'Not specified'}</p>
+        <p><strong>Notes:</strong> ${notes}</p>
+      `,
     };
 
     console.log('Sending email with options:', mailOptions);
-
-    // Add this before sending the email
-    dns.lookup('smtp.gmail.com', (err, address, family) => {
-      console.log('DNS lookup result:', err, address, family);
-    });
 
     await transporter.sendMail(mailOptions);
     
