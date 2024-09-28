@@ -11,7 +11,7 @@ const packages = [
       'In-depth Keyword Analysis',
       'On-Page SEO Enhancement',
       'Basic Local SEO Setup',
-      'Monthly Performance Reports',
+      'SEO Technical Fixes',
     ],
   },
   {

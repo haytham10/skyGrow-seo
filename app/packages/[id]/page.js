@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import ConsultationForm from '../../components/ConsultationForm';
 import { motion, useAnimation } from 'framer-motion';
-import { FaCheckCircle, FaSearch, FaCode, FaChartLine, FaPencilAlt, FaLink, FaCogs, FaRobot, FaGlobe, FaExchangeAlt, FaStar } from 'react-icons/fa';
+import { FaCheckCircle, FaSearch, FaCode, FaPencilAlt, FaLink, FaCogs, FaRobot, FaGlobe, FaExchangeAlt, FaStar, FaWrench } from 'react-icons/fa';
 
 const packages = {
   'essential-optimization': {
@@ -13,8 +13,8 @@ const packages = {
     features: [
       { name: 'Keyword Research', icon: FaSearch, description: 'In-depth analysis to target the right keywords' },
       { name: 'On-Page SEO', icon: FaCode, description: 'Optimize your website structure and content' },
-      { name: 'Monthly Reporting', icon: FaChartLine, description: 'Detailed insights on your SEO performance' },
       { name: 'Basic Local SEO', icon: FaGlobe, description: 'Setup for local businesses' },
+      { name: 'SEO Technical Fixes', icon: FaWrench, description: 'Fix technical SEO issues' },
     ],
     color: 'from-blue-400 to-green-500',
   },
