@@ -1,12 +1,13 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const testimonials = [
-  { name: "Jane Smith", role: "CEO, Acme Corp", quote: "SkyGrow boosted our organic traffic by 150% within three months!" },
-  { name: "John Doe", role: "Marketing Director, Tech Inc", quote: "Their SEO strategies transformed our online presence. Highly recommended!" },
-  { name: "Emily Brown", role: "Founder, StartUp Co", quote: "SkyGrow's expertise helped us achieve top rankings for our key products." }
+  { name: "Razva Nionesc", img: "/images/razva.png", role: "Romania", quote: "100% would recommend. Now I feel better about my website knowing someone with long time experience went over it and optimized all SEO . I have no idea how SEO works and it’s okay to give the job to someone else so you can focus on other things ! 🙌" },
+  { name: "Dean Nzal", img: "/images/dean.png", role: "United States", quote: "I recently hired SkyGrow to optimize my website's on-page SEO, and I couldn't be happier with the results! As a business owner, I knew I needed to improve my search rankings to attract more organic traffic, but I didn't know where to start. That's where SkyGrow came in." },
+  { name: "Dan Kelly", img: "/images/dan.png", role: "Canada", quote: "I was incredibly impressed! I am extremely happy with the work they've done for us thus far. Their proficiency in acquiring high-authority, white-hat, dofollow backlinks has notably elevated my website's ranking." }
 ];
 
 export default function Testimonials() {
@@ -38,7 +39,7 @@ export default function Testimonials() {
               </svg>
               <p className="text-gray-300 mb-4">{testimonial.quote}</p>
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-purple-500 rounded-full mr-3"></div>
+                <Image src={testimonial.img} alt={testimonial.name} width={50} height={50} className="w-10 h-10 rounded-full mr-3" />
                 <div>
                   <p className="font-semibold text-white">{testimonial.name}</p>
                   <p className="text-gray-400 text-sm">{testimonial.role}</p>
