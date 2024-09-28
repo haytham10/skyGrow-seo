@@ -59,7 +59,7 @@ export default function BlogPage() {
 								variants={itemVariants}
 								className="flex flex-col items-center p-6 bg-navy-800 rounded-lg shadow-lg"
 							>
-								<item.icon className="text-4xl mb-4 text-gold-500" />
+								<item.icon className="text-4xl mb-4 text-light-purple" />
 								<p className="text-lg font-semibold text-white">{item.text}</p>
 							</motion.div>
 						))}
@@ -68,7 +68,7 @@ export default function BlogPage() {
 					<motion.div variants={itemVariants}>
 						<Link
 							href="./#contact" 
-							className="inline-block px-8 py-3 bg-gold-500 text-navy-900 font-bold rounded-full hover:bg-gold-600 transition duration-300"
+							className="inline-block px-8 py-3 bg-light-purple text-navy-900 font-bold rounded-full hover:bg-medium-purple transition duration-300"
 						>
 							Get Notified When We Launch
 						</Link>

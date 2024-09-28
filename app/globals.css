@@ -1,64 +1,22 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --deep-gray: #1C1C1C;
-  --black: #000000;
-  --blue-accent: #005f99;
-  --green-accent: #28A745;
-  --white: #FFFFFF;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 17, 24, 39;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  background-color: var(--deep-gray);
-  color: var(--white);
-  font-family: 'Roboto', sans-serif;
-}
-
-a {
-  color: var(--blue-accent);
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  background-color: var(--blue-accent);
-  color: var(--white);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: var(--green-accent);
-}
-
-input, textarea {
-  background-color: #2d2d2d;
-  border: none;
-  color: white;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #888;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.hidden {
-  display: none;
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Inter', sans-serif;
 }
